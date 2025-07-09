@@ -6,48 +6,77 @@ export default function TodosCrudPage() {
   const [todos, setTodos] = useState([]);
   const [title, setTitle] = useState('');
 
+  // GET
   useEffect(() => {
-    axios
-      .get('https://jsonplaceholder.typicode.com/todos?_limit=5')
-      .then((res) => setTodos(res.data));
+    const fetchTodos = async () => {
+      try {
+        const res = await axios.get(
+          'https://jsonplaceholder.typicode.com/todos',
+          {
+            params: {
+              _limit: 5,
+            },
+          }
+        );
+        console.log('GET 응답:', res.data);
+        setTodos(res.data);
+      } catch (error) {
+        console.error('GET 요청 실패:', error);
+      }
+    };
+
+    fetchTodos();
   }, []);
 
+  // POST
   const handleAdd = async () => {
-    const res = await axios.post('https://jsonplaceholder.typicode.com/todos', {
-      title,
-      completed: false,
-    });
-    alert('추가 완료 (Mock)');
-    console.log('POST 응답:', res.data);
+    try {
+      const res = await axios.post(
+        'https://jsonplaceholder.typicode.com/todos',
+        {
+          title,
+          completed: false,
+        }
+      );
+      alert('추가 완료 (Mock)');
+      console.log('POST 응답:', res.data);
+    } catch (error) {
+      console.error('POST 요청 실패:', error);
+    }
   };
 
+  // PATCH
   const handleToggle = async (id) => {
-    const res = await axios.patch(
-      `https://jsonplaceholder.typicode.com/todos/${id}`,
-      {
-        completed: true,
-      }
-    );
-    alert('완료 처리 (Mock)');
-    console.log('PATCH 응답:', res.data);
+    try {
+      const res = await axios.patch(
+        `https://jsonplaceholder.typicode.com/todos/${id}`,
+        {
+          completed: true,
+        }
+      );
+      alert('완료 처리 (Mock)');
+      console.log('PATCH 응답:', res.data);
+    } catch (error) {
+      console.error('PATCH 요청 실패:', error);
+    }
   };
 
+  // DELETE
   const handleDelete = async (id) => {
-    await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`);
-    alert('삭제 완료 (Mock)');
-    console.log('DELETE 완료:', id);
+    try {
+      await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`);
+      alert('삭제 완료 (Mock)');
+      console.log('DELETE 완료:', id);
+    } catch (error) {
+      console.error('DELETE 요청 실패:', error);
+    }
   };
 
   return (
     <div className="p-6 space-y-4">
-      <h1 className="text-2xl font-bold">🛠️ Todo CRUD 실습</h1>
+      <h1 className="text-2xl font-bold mb-2">🛠️ Todo CRUD 실습</h1>
 
-      <Link
-        to="/"
-        className="text-blue-600 underline hover:text-blue-800 block mb-4"
-      >
-        ⬅️ 홈으로 돌아가기
-      </Link>
+      <Link to="/">⬅️ 홈으로 돌아가기</Link>
 
       <div className="flex gap-2">
         <input
