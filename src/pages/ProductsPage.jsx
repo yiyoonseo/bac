@@ -25,13 +25,7 @@ export default function ProductsPage() {
 
             <h1 className="text-xl font-bold my-2">상품 전체 조회</h1>
 
-            <ul className="list-disc ml-5 space-y-1">
-              {products.map(() => (
-                <li key={}>
-                  <strong></strong> () - 원
-                </li>
-              ))}
-            </ul>
+            <ul className="list-disc ml-5 space-y-1"></ul>
           </div>
         )}
       </div>

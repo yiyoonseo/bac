@@ -7,13 +7,13 @@ export default function TodosTanStackQueryPage() {
 
       <Link to="/">⬅️ 홈으로 돌아가기</Link>
 
-      {isLoading && <p className="text-gray-600">로딩 중...</p>}
+      {/* {isLoading && <p className="text-gray-600">로딩 중...</p>}
       {isError && <p className="text-red-500">에러 발생: {error.message}</p>}
       {!isLoading && !isError && (
         <pre className="bg-gray-100 p-4 rounded text-sm text-gray-800 overflow-auto">
           {JSON.stringify(data.slice(0, 5), null, 2)}
         </pre>
-      )}
+      )} */}
     </div>
   );
 }
