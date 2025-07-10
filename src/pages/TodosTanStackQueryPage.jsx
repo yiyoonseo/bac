@@ -1,19 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const fetchTodos = async () => {
-  const res = await axios.get('https://jsonplaceholder.typicode.com/todos');
-  return res.data;
-};
-
 export default function TodosTanStackQueryPage() {
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['todos'],
-    queryFn: fetchTodos,
-    staleTime: 1000 * 60 * 5, // 5분간 fresh 처리
-  });
-
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-2">📋 Todos</h1>

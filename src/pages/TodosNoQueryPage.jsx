@@ -1,29 +1,10 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function TodosNoQueryPage() {
   const [todos, setTodos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(null);
-
-  useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        setIsLoading(true);
-        const res = await axios.get(
-          'https://jsonplaceholder.typicode.com/todos'
-        );
-        setTodos(res.data);
-      } catch (error) {
-        setIsError(error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchTodos();
-  }, []);
 
   return (
     <div className="p-6">
